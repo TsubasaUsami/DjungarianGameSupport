@@ -12,6 +12,8 @@ import { MyModalPreviewContent } from './parts/modals/preview.service';
 import { FooterComponent } from './layout/footer/footer.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { SplatoonService } from './services/splatoon.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,9 +29,12 @@ import { environment } from '../environments/environment';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
-  providers: [],
+  providers: [
+    SplatoonService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
