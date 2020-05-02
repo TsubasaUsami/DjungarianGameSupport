@@ -9,6 +9,9 @@ import { HeaderComponent } from './layout/header/header.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MyModalPreviewContent } from './parts/modals/preview.service';
+import { FooterComponent } from './layout/footer/footer.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -17,12 +20,14 @@ import { MyModalPreviewContent } from './parts/modals/preview.service';
     Splatoon2Component,
     HeaderComponent,
     DashboardComponent,
-    MyModalPreviewContent
+    MyModalPreviewContent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent]

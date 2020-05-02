@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PreviewModalService } from 'src/app/parts/modals/preview.service';
 
 @Component({
   selector: 'app-splatoon2',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Splatoon2Component implements OnInit {
 
-  constructor() { }
+  constructor(
+    private prevModal: PreviewModalService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  async onClickTableRow() {
+    const res = await this.prevModal.confirm('削除', '選択したデータを削除します。よろしいですか？', 'はい', 'いいえ');
   }
 
 }
