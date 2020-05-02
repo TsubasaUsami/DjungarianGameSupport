@@ -13,7 +13,13 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { SplatoonService } from './services/splatoon.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
+import { CustomHttpInterceptor } from './services/CustomHttpInterceptor';
+import { LoadingComponent } from './parts/loading/loading.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -23,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     DashboardComponent,
     MyModalPreviewContent,
-    FooterComponent
+    FooterComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,10 +38,30 @@ import { HttpClientModule } from '@angular/common/http';
     NgbModule,
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    BrowserAnimationsModule,
+    TranslateModule.forRoot({
+      useDefaultLang: false,
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+    ToastrModule.forRoot({
+      enableHtml: true,
+      progressBar: true,
+      toastClass: 'ngx-toastr w-100'
+    })
   ],
   providers: [
     SplatoonService,
+    { provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+// AoTにはfactory向けのメソッドが必要
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/dgs/', '.json');
+}

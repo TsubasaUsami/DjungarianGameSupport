@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { PreviewModalService } from 'src/app/parts/modals/preview.service';
 import { SplatoonService } from 'src/app/services/splatoon.service';
-import { AppConsts } from 'src/app/consts/app-consts';
+import { AppConsts } from 'src/app/constants/app-consts';
 import { MatchInfo } from 'src/app/models/splatoon/match-info';
+import { MessageService } from 'src/app/services/toaster/message.service';
+import { MessageId } from 'src/app/constants/message.constant';
 
 @Component({
   selector: 'app-splatoon2',
@@ -20,21 +22,20 @@ export class Splatoon2Component implements OnInit {
 
   constructor(
     private prevModal: PreviewModalService,
+    private messageService: MessageService,
     private service: SplatoonService
   ) { }
 
   ngOnInit(): void {
     this.service.getMatchInfoList(this.appConsts.REGULAR_PATH, this.appConsts.NOW_PATH).subscribe((response) => {
       this.gridData = response.result;
-      console.log(response.result[0].start);
       this.battleTypeLink = this.appConsts.BATTLE_TYPE[response.result[0].rule];
+    },
+    (err: any) => {
+      this.messageService.showMessage(MessageId.MSG_ID_0001);
+      console.log(err);
     });
 
-  }
-
-  async onClickTableRow(selected: MatchInfo) {
-    console.log(selected);
-    this.prevModal.confirm('', '');
   }
 
   onClickMatchBtn(type: string) {
@@ -42,6 +43,11 @@ export class Splatoon2Component implements OnInit {
     this.matchType = type;
     this.service.getMatchInfoList(type, this.target).subscribe((response) => {
       this.gridData = response.result;
+      this.battleTypeLink = this.appConsts.BATTLE_TYPE[response.result[0].rule];
+    },
+    (err: any) => {
+      this.messageService.showMessage(MessageId.MSG_ID_0001);
+      console.log(err);
     });
   }
 
@@ -50,6 +56,11 @@ export class Splatoon2Component implements OnInit {
     this.target = target;
     this.service.getMatchInfoList(this.matchType, target).subscribe((response) => {
       this.gridData = response.result;
+      this.battleTypeLink = this.appConsts.BATTLE_TYPE[response.result[0].rule];
+    },
+    (err: any) => {
+      this.messageService.showMessage(MessageId.MSG_ID_0001);
+      console.log(err);
     });
   }
 
