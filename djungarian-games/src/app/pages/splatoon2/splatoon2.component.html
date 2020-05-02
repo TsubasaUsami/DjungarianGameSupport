@@ -3,22 +3,22 @@
 <div class="row mb-5">
   <div class="col-md-12 col-sm-12">
     <div class="card">
-      <h5 class="card-header">レギュラーマッチ</h5>
+      <h5 class="card-header">{{ matchTypeName }}（{{ targetName }}）</h5>
       <div class="card-body">
         <div class="table-responsive">
           <table class="table table-borderless">
             <tbody>
               <tr>
                 <th class="panel-th-width" scope="row">ルール</th>
-                <td>Mark</td>
+                <td><a href="{{ battleTypeLink }}">{{ gridData[0]?.rule }}</a></td>
               </tr>
               <tr>
                 <th class="panel-th-width" scope="row">開始時刻</th>
-                <td>Jacob</td>
+                <td>{{ gridData[0]?.start | date: 'HH時mm分' }}</td>
               </tr>
               <tr>
                 <th class="panel-th-width" scope="row">終了時刻</th>
-                <td>Jacob</td>
+                <td>{{ gridData[0]?.end | date: 'HH時mm分' }}</td>
               </tr>
             </tbody>
           </table>
@@ -28,60 +28,54 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-6 col-sm-12 mb-3" *ngFor="let item of gridData[0]?.maps_ex; index as i">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="{{ item.image }}" alt="item.name">
+      <div class="card-body">
+        <h5 class="card-title">{{ item.name }}</h5>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="row mb-3">
   <div class="col-sm-12 col-md-12">
-    <div class="table-responsive">
+    <!-- <div class="table-responsive">
       <table class="table table-hover">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">ステージ名</th>
           </tr>
         </thead>
         <tbody>
-          <tr (click)="onClickTableRow()">
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
+          <tr (click)="onClickTableRow(item)" *ngFor="let item of gridData[0]?.maps; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ item }}</td>
           </tr>
         </tbody>
       </table>
+    </div> -->
+    <div class="float-left">
+      <nav aria-label="...">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link f-size-mini" href="javascript:void(0)" aria-label="現在" (click)="onClickTargetBtn(appConsts.NOW_PATH)">
+              <span aria-hidden="true">{{ appConsts.NOW_NAME }}</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link f-size-mini" href="javascript:void(0)" aria-label="次" (click)="onClickTargetBtn(appConsts.NEXT_PATH)">
+              <span aria-hidden="true">{{ appConsts.NEXT_NAME }}</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
-    <nav aria-label="...">
-      <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" href="javascript:void(0)" aria-label="現在">
-            <span aria-hidden="true">現在</span>
-          </a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="javascript:void(0)" aria-label="次">
-            <span aria-hidden="true">次</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+    <div class="float-right">
+      <button class="btn btn-success f-size-mini mr-1" (click)="onClickMatchBtn(appConsts.REGULAR_PATH)">{{ appConsts.REGULAR_NAME }}</button>
+      <button class="btn btn-danger f-size-mini" (click)="onClickMatchBtn(appConsts.GACHI_PATH)">{{ appConsts.GACHI_NAME }}</button>
+    </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-4 mb-1">
-    <button class="btn btn-danger">ガチマッチ</button>
-  </div>
-  <div class="col-md-4 mb-1">
-    <button class="btn btn-success">レギュラーマッチ</button>
-  </div>
-</div>
+

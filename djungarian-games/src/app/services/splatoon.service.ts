@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment'
-import { SplatoonMatchInfoList } from '../models/splatoon/splatoon-match-info-list';
+import { MatchInfoList } from '../models/splatoon/match-info-list';
 
 @Injectable()
 export class SplatoonService {
@@ -20,7 +20,7 @@ export class SplatoonService {
   /**
    * グループ情報取得APIコール用関数
    */
-  public getMatchInfoList(matchType: string, target: string): Observable<SplatoonMatchInfoList> {
-    return this.http.get<SplatoonMatchInfoList>(`${environment.webApiUrl}/${matchType}/${target}`);
+  public getMatchInfoList(matchType: string, target: string): Observable<MatchInfoList> {
+    return this.http.get<MatchInfoList>(`${environment.webApiUrl}/${matchType}/${target}`);
   }
 }
