@@ -1,0 +1,16 @@
+<div *ngIf="loadingService.getLoadingStatus()" class="backdrop"></div>
+<div *ngIf="loadingService.getLoadingStatus()" class="spinner">
+  <div class="d-flex flex-column justify-content-center align-items-center vh-100">
+    <div id="loading-icon">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <span id="loading-text">Loading...</span>
+  </div>
+</div>
