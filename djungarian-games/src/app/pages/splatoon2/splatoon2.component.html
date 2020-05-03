@@ -1,4 +1,6 @@
-<h2>スプラトゥーン2</h2>
+<div class="mx-auto logo-size">
+  <img class="card-img-top" src="assets\img\logo_splatoon2.png" alt="ロゴ">
+</div>
 <br>
 <div class="row mb-5">
   <div class="col-md-12 col-sm-12">
@@ -29,16 +31,16 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-6 col-sm-12 mb-3" *ngFor="let item of gridData[0]?.maps_ex; index as i">
-    <div class="card" style="width: 18rem;">
+  <div class="col-md-6 col-sm-12 mb-5" *ngFor="let item of gridData[0]?.maps_ex; index as i">
+    <div class="card card-size mx-auto">
       <img class="card-img-top" src="{{ item.image }}" alt="item.name">
-      <div class="card-body">
+      <div class="card-body bg-primary text-white">
         <h5 class="card-title">{{ item.name }}</h5>
       </div>
     </div>
   </div>
 </div>
-<div class="row mb-3">
+<div class="row mb-1">
   <div class="col-sm-12 col-md-12">
     <!-- <div class="table-responsive">
       <table class="table table-hover">
@@ -76,6 +78,11 @@
       <button class="btn btn-success f-size-mini mr-1" (click)="onClickMatchBtn(appConsts.REGULAR_PATH)">{{ appConsts.REGULAR_NAME }}</button>
       <button class="btn btn-danger f-size-mini" (click)="onClickMatchBtn(appConsts.GACHI_PATH)">{{ appConsts.GACHI_NAME }}</button>
     </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12 col-md-12">
+    <button type="button" class="btn btn-outline-secondary" routerLink="spl-schedule">現在～24時間後のスケジュールを表示</button>
   </div>
 </div>
 

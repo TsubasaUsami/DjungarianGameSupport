@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  webApiUrl: 'https://spla2.yuu26.com'
+  webApiUrlSpl: 'https://spla2.yuu26.com'
 };
 
 /*

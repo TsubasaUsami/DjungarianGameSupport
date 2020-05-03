@@ -20,6 +20,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Splatoon2ScheduleComponent } from './pages/splatoon2-schedule/splatoon2-schedule.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MyModalPreviewContent,
     FooterComponent,
     LoadingComponent,
+    Splatoon2ScheduleComponent,
   ],
   imports: [
     BrowserModule,
