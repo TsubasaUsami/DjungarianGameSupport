@@ -21,6 +21,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Splatoon2ScheduleComponent } from './pages/splatoon2-schedule/splatoon2-schedule.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { Splatoon2ScheduleComponent } from './pages/splatoon2-schedule/splatoon2
     Splatoon2ScheduleComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
@@ -53,7 +54,8 @@ import { Splatoon2ScheduleComponent } from './pages/splatoon2-schedule/splatoon2
       enableHtml: true,
       progressBar: true,
       toastClass: 'ngx-toastr w-100'
-    })
+    }),
+    RouterModule
   ],
   providers: [
     SplatoonService,

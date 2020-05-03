@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/djungarian-games",
+            "outputPath": "dist/djungarian-games/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -22,7 +22,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
+              "src/web.config"
             ],
             "styles": [
               "src/styles.css",
@@ -126,6 +127,41 @@
           "configurations": {
             "production": {
               "devServerTarget": "djungarian-games:serve:production"
+            }
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/djungarian-games/server",
+            "main": "src/main.server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": true
+            }
+          }
+        },
+        "app-shell": {
+          "builder": "@angular-devkit/build-angular:app-shell",
+          "options": {
+            "browserTarget": "djungarian-games:build",
+            "serverTarget": "djungarian-games:server",
+            "route": "shell"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "djungarian-games:build:production",
+              "serverTarget": "djungarian-games:server:production"
             }
           }
         }
