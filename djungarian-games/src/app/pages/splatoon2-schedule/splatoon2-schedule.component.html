@@ -1,0 +1,94 @@
+<div class="row mb-1">
+  <div class="col-sm-12 col-md-12">
+    <p>
+      {{ startDate | date:'yyyy/MM/dd HH:mm' }}～{{ endDate | date:'yyyy/MM/dd HH:mm' }}のスケジュールを表示します。
+    </p>
+  </div>
+</div>
+<div class="row mb-5">
+  <div class="col-md-12 col-sm-12">
+    <div class="card accordion">
+      <div class="card-header" (click)="isCollapsedReg = !isCollapsedReg">
+        レギュラーマッチ
+        <span class="float-right" *ngIf="isCollapsedReg">
+          <i class="fas fa-plus text-right"></i>
+        </span>
+        <span class="float-right" *ngIf="!isCollapsedReg">
+          <i class="fas fa-minus text-right"></i>
+        </span>
+      </div>
+      <div class="card-body" [ngbCollapse]="isCollapsedReg">
+        <div class="table-responsive">
+          <table class="table text-nowrap">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>開始時間</th>
+                <th>終了時間</th>
+                <th>ステージ1</th>
+                <th>ステージ2</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of regularList; index as i" [ngClass]="{'table-success': onTime(item)}">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ item.start | date:'HH:mm' }}</td>
+                <td>{{ item.end | date:'HH:mm' }}</td>
+                <td *ngFor="let map of item.maps">
+                  {{ map }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mb-3">
+  <div class="col-md-12 col-lg-12">
+    <div class="card accordion">
+      <div class="card-header" (click)="isCollapsedGac = !isCollapsedGac">
+        ガチマッチ
+        <span class="float-right" *ngIf="isCollapsedGac">
+          <i class="fas fa-plus text-right"></i>
+        </span>
+        <span class="float-right" *ngIf="!isCollapsedGac">
+          <i class="fas fa-minus text-right"></i>
+        </span>
+      </div>
+      <div class="card-body" [ngbCollapse]="isCollapsedGac">
+        <div class="table-responsive">
+          <table class="table text-nowrap">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>開始時間</th>
+                <th>終了時間</th>
+                <th>ルール</th>
+                <th>ステージ1</th>
+                <th>ステージ2</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of gachiList; index as i" [ngClass]="{'table-success': onTime(item)}">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ item.start | date:'HH:mm' }}</td>
+                <td>{{ item.end | date:'HH:mm' }}</td>
+                <td>{{ item.rule }}</td>
+                <td *ngFor="let map of item.maps">
+                  {{ map }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12 col-md-12">
+    <button type="button" class="btn btn-primary" (click)="goBack()">戻る</button>
+  </div>
+</div>
