@@ -14,8 +14,10 @@ export class Splatoon2Component implements OnInit {
   appConsts = AppConsts;
   battleTypeLink: string;
   gridData: MatchInfo[] = [];
-  matchType = this.appConsts.REGULAR_PATH;
-  matchTypeName = this.appConsts.REGULAR_NAME;
+  matchConfig = {
+    path: this.appConsts.REGULAR_PATH,
+    value: this.appConsts.REGULAR_NAME
+  };
   target = this.appConsts.NOW_PATH;
   targetName = this.appConsts.NOW_NAME;
 
@@ -42,16 +44,17 @@ export class Splatoon2Component implements OnInit {
   }
 
   /**
-   * マッチ選択ボタン押下時処理
+   * マッチリスト選択時処理
    * @param type マッチ種別
    */
-  onClickMatchBtn(type: string) {
-    // マッチ種別を引数に応じて変更
-    this.matchTypeName = type === this.appConsts.REGULAR_PATH ? this.appConsts.REGULAR_NAME : this.appConsts.GACHI_NAME;
-    this.matchType = type;
+  onClickMatchLst() {
+    // 表示対象は現在に戻す
+    this.target = this.appConsts.NOW_PATH;
+    this.targetName = this.appConsts.NOW_NAME;
 
     // APIをコールしてデータを取得する。
-    this.service.getMatchInfoList(type, this.target).subscribe((response) => {
+    this.service.getMatchInfoList(this.matchConfig.path, this.target).subscribe((response) => {
+      this.matchConfig.value = this.appConsts.MATCH_TYPE_LIST.filter(x => x.path === this.matchConfig.path)[0].value;
       this.gridData = response.result;
       this.battleTypeLink = this.appConsts.BATTLE_TYPE[response.result[0].rule];
     },
@@ -72,7 +75,7 @@ export class Splatoon2Component implements OnInit {
     this.target = target;
 
     // APIをコールしてデータを取得する。
-    this.service.getMatchInfoList(this.matchType, target).subscribe((response) => {
+    this.service.getMatchInfoList(this.matchConfig.path, target).subscribe((response) => {
       this.gridData = response.result;
       this.battleTypeLink = this.appConsts.BATTLE_TYPE[response.result[0].rule];
     },

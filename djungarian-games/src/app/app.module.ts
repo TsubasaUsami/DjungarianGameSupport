@@ -22,6 +22,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Splatoon2ScheduleComponent } from './pages/splatoon2-schedule/splatoon2-schedule.component';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { RouterModule } from '@angular/router';
       progressBar: true,
       toastClass: 'ngx-toastr w-100'
     }),
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   providers: [
     SplatoonService,

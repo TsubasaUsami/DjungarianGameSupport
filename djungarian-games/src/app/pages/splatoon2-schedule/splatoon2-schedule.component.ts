@@ -12,9 +12,11 @@ import { MatchInfo } from 'src/app/models/splatoon/match-info';
 })
 export class Splatoon2ScheduleComponent implements OnInit {
   public isCollapsedReg: boolean; // アコーディオン用
-  public isCollapsedGac: boolean; // アコーディオン用
+  public isCollapsedGac = true; // アコーディオン用
+  public isCollapsedLea = true; // アコーディオン用
   public gachiList: MatchInfo[];
   public regularList: MatchInfo[];
+  public leagueList: MatchInfo[];
   public startDate: Date;
   public endDate: Date;
   public nowDate = new Date();
@@ -34,6 +36,7 @@ export class Splatoon2ScheduleComponent implements OnInit {
       console.log(response);
       this.regularList = response.result.regular;
       this.gachiList = response.result.gachi;
+      this.leagueList = response.result.league;
       this.startDate = response.result.regular[0].start;
       this.endDate = response.result.regular.slice(-1)[0].end;
     },
