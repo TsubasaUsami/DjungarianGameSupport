@@ -1,8 +1,10 @@
 export class AppConsts {
   static readonly GACHI_NAME = 'ガチマッチ';
   static readonly REGULAR_NAME = 'レギュラーマッチ';
+  static readonly LEAGUE_NAME = 'リーグマッチ';
   static readonly GACHI_PATH = 'gachi';
   static readonly REGULAR_PATH = 'regular';
+  static readonly LEAGUE_PATH = 'league';
   static readonly NOW_NAME = '現在';
   static readonly NEXT_NAME = '次';
   static readonly NOW_PATH = 'now';
@@ -11,7 +13,22 @@ export class AppConsts {
     ナワバリバトル: 'https://wiki.denfaminicogamer.jp/Splatoon2/%E3%83%8A%E3%83%AF%E3%83%90%E3%83%AA%E3%83%90%E3%83%88%E3%83%AB',
     ガチエリア: 'https://wiki.denfaminicogamer.jp/Splatoon2/%E3%82%AC%E3%83%81%E3%82%A8%E3%83%AA%E3%82%A2',
     ガチヤグラ: 'https://wiki.denfaminicogamer.jp/Splatoon2/%E3%82%AC%E3%83%81%E3%83%A4%E3%82%B0%E3%83%A9',
-    ガチホコ: 'https://wiki.denfaminicogamer.jp/Splatoon2/%E3%82%AC%E3%83%81%E3%83%9B%E3%82%B3',
+    ガチホコバトル: 'https://wiki.denfaminicogamer.jp/Splatoon2/%E3%82%AC%E3%83%81%E3%83%9B%E3%82%B3',
     ガチアサリ: 'https://wiki.denfaminicogamer.jp/Splatoon2/%E3%82%AC%E3%83%81%E3%82%A2%E3%82%B5%E3%83%AA',
   };
+  static readonly MATCH_TYPE_LIST = [
+    {
+      path: AppConsts.REGULAR_PATH,
+      value: AppConsts.REGULAR_NAME
+    },
+    {
+      path: AppConsts.GACHI_PATH,
+      value: AppConsts.GACHI_NAME
+    },
+    {
+      path: AppConsts.LEAGUE_PATH,
+      value: AppConsts.LEAGUE_NAME
+    },
+  ];
+
 }

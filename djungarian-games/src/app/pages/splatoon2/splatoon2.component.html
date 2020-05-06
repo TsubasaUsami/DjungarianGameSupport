@@ -5,7 +5,7 @@
 <div class="row mb-5">
   <div class="col-md-12 col-sm-12">
     <div class="card">
-      <h5 class="card-header">{{ matchTypeName }}（{{ targetName }}）</h5>
+      <h5 class="card-header">{{ matchConfig.value }}（{{ targetName }}）</h5>
       <div class="card-body">
         <div class="table-responsive">
           <table class="table table-borderless">
@@ -75,8 +75,11 @@
       </nav>
     </div>
     <div class="float-right">
-      <button class="btn btn-success f-size-mini mr-1" (click)="onClickMatchBtn(appConsts.REGULAR_PATH)">{{ appConsts.REGULAR_NAME }}</button>
-      <button class="btn btn-danger f-size-mini" (click)="onClickMatchBtn(appConsts.GACHI_PATH)">{{ appConsts.GACHI_NAME }}</button>
+      <select class="form-control" [(ngModel)]="matchConfig.path" (change)="onClickMatchLst()">
+        <option *ngFor="let item of appConsts.MATCH_TYPE_LIST" [(value)]="item.path">
+          {{ item.value }}
+        </option>
+      </select>
     </div>
   </div>
 </div>
