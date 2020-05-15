@@ -22,4 +22,6 @@ steps:
     npm install -g @angular/cli
     npm install
     ng build --prod
+  workingDirectory: 
+    djungarian-games
   displayName: 'npm install and build'
