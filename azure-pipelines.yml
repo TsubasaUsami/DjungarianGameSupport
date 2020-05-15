@@ -17,7 +17,7 @@ steps:
 
 - script: |
     echo 処理開始
-    cd
+    dir
     echo 処理終了
     npm install -g @angular/cli
     npm install
