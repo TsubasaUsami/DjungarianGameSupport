@@ -23,5 +23,5 @@ steps:
     npm install
     ng build --prod
   workingDirectory: 
-    djungarian-games/src/app
+    djungarian-games
   displayName: 'npm install and build'
