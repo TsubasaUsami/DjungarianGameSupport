@@ -16,10 +16,10 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    cd src/app
+    echo 処理開始
+    cd
+    echo 処理終了
     npm install -g @angular/cli
     npm install
     ng build --prod
-  workingDirectory: 
-    DjungarianGameSupport/djungarian-games
   displayName: 'npm install and build'
