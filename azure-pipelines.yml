@@ -28,6 +28,6 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: 'dist/djungarian-games'
+    PathtoPublish: 'djungarian-games/dist/djungarian-games'
     ArtifactName: 'drop'
     publishLocation: 'Container'
