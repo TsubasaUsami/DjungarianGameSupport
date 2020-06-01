@@ -25,3 +25,9 @@ steps:
   workingDirectory: 
     djungarian-games
   displayName: 'npm install and build'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'dist/djungarian-games'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
